@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const uri = `mongodb+srv://${process.env.GUDAM_GHOE_DB}:${process.env.GUDAM_GHOE_PASS}@cluster0.whv8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.GUDAM_GHOR_DB}:${process.env.GUDAM_GHOR_PASS}@cluster0.whv8p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function run() {
