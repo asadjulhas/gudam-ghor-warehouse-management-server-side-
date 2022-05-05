@@ -32,12 +32,29 @@ async function run() {
     res.send(result)
   })
 
+
+  // Get all product count
+  app.get('/productcount', async (req, res) => {
+    const count = await productCollenction.estimatedDocumentCount();
+    res.send({count})
+  })
+
   // Get all the products
  app.get('/product', async (req, res) => {
     const quary = {};
     const cursor = productCollenction.find(quary);
     const products = await cursor.toArray();
     res.send(products)
+ })
+
+ // Get all product in pagination
+ app.get('/pagination', async (req, res) => {
+   const pageNumber = req.query.pageNUmber;
+   const pageAmmount = parseInt(req.query.pageAmmount);
+   const query = {};
+   const cursor = productCollenction.find(query);
+   const product = await cursor.skip(pageNumber*pageAmmount).limit(pageAmmount).toArray();
+   res.send(product)
  })
 
  // Get a single item
