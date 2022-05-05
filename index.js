@@ -25,6 +25,12 @@ async function run() {
 
   const productCollenction = client.db('GudamGhor').collection('product');
 
+  // Add product
+  app.post('/add-product', async (req, res) => {
+    const data = req.body;
+    const result = await productCollenction.insertOne(data);
+    res.send(result)
+  })
 
   // Get all the products
  app.get('/product', async (req, res) => {
@@ -53,7 +59,7 @@ async function run() {
       stock: stock.currentStock
     },
   };
-  const result = await productCollenction.updateOne(query, updateDoc)
+  const result = await productCollenction.updateOne(query, updateDoc, options)
   res.send({result})
  })
 
