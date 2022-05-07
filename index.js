@@ -9,7 +9,6 @@ require('dotenv').config();
 const { MongoClient, ServerApiVersion } = require('mongodb')
 ;
 
-
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -111,7 +110,7 @@ run().catch(console.dir);
 
 
 app.get('/', (req, res) => {
-  res.send('Gudam-Ghor server is running');
+  res.send('Gudam-Ghor server is running now');
 })
 
 app.listen(port, () => {
