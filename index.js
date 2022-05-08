@@ -6,9 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 const port = process.env.PORT || 5000;
 require('dotenv').config();
 
-
-const { MongoClient, ServerApiVersion } = require('mongodb')
-;
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 // Middleware
 app.use(cors());
