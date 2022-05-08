@@ -14,6 +14,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb')
 app.use(cors());
 app.use(express.json());
 
+// Verify user token
 function VerifyUser (req, res, next)  {
   const accessToken = req.headers.authorization;
   if(!accessToken){
@@ -27,7 +28,6 @@ function VerifyUser (req, res, next)  {
     req.decoded = decoded;
     next();
   });
-
 }
 
 
@@ -95,7 +95,6 @@ async function run() {
   const result = await productCollenction.updateOne(query, updateDoc, options)
   res.send({result})
  })
-
 
  // Delete a product
 
