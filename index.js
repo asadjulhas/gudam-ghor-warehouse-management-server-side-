@@ -38,6 +38,7 @@ async function run() {
   await client.connect();
 
   const productCollenction = client.db('GudamGhor').collection('product');
+  const taskCollections = client.db("GudamGhor").collection("tasks");
 
   // Add product
   app.post('/add-product', async (req, res) => {
@@ -126,6 +127,32 @@ app.post('/login', async (req, res) => {
   })
   res.send({accessToken})
 })
+
+  // Get all task
+  app.get("/task", async (req, res) => {
+    const query = {};
+    const cursor = taskCollections.find(query);
+    const task = await cursor.toArray();
+    res.send(task);
+  });
+
+  // Store Task list
+app.post("/task", async (req, res) => {
+const task = req.body;
+ const result = await taskCollections.insertOne(task);
+res.send(result);
+ });
+
+// Delete a task
+
+app.delete("/delete/:id", async (req, res) => {
+const id = req.params.id;
+const query = { _id: ObjectId(id) };
+const result = await taskCollections.deleteOne(query);
+res.send(result);
+ });
+
+
 
   }
   finally {
