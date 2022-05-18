@@ -40,6 +40,7 @@ async function run() {
   await client.connect();
 
   const productCollenction = client.db('GudamGhor').collection('product');
+  const taskCollections = client.db("GudamGhor").collection("tasks");
 
   // Add product
   app.post('/add-product', async (req, res) => {
@@ -128,6 +129,14 @@ app.post('/login', async (req, res) => {
   })
   res.send({accessToken})
 })
+
+  // Get all task
+  app.get("/task", async (req, res) => {
+    const query = {};
+    const cursor = taskCollections.find(query);
+    const task = await cursor.toArray();
+    res.send(task);
+  });
 
   }
   finally {
